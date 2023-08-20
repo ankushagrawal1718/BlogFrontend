@@ -9,10 +9,18 @@ const Header = () => {
   useEffect(() => {
     fetch(BASE_URL+'/profile', {
       credentials: 'include',
-    }).then(response => {
-      response.json().then(userInfo => {
-        setUserInfo(userInfo);
-      });
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(userInfo => {
+      setUserInfo(userInfo);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
     });
   }, []);
 
