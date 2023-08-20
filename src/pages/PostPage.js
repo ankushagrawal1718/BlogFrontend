@@ -11,20 +11,19 @@ const PostPage = () => {
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
   useEffect(() => {
-        console.log("hello i am clicked!!")
     fetch(BASE_URL+`/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
         setPostInfo(postInfo);
       });
     });
-  }, []);
+  }, [id]);
   if (!postInfo) return "";
   return (
     <div className="post-page">
       <h1>{postInfo.title}</h1>
       <time>{format(new Date(postInfo.createdAt), "dd-mm-yyyy HH:mm:ss")}</time>
-      <div className="author">by {postInfo.author.username}</div>
-      {userInfo.id === postInfo.author._id && (
+      <div className="author">by {postInfo?.author?.username}</div>
+      {userInfo && userInfo.id === postInfo?.author._id && (
         <div className="edit-row">
           <Link className="edit-btn" to={`/edit/${postInfo._id}`}>
             <svg
