@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, json } from 'react-router-dom';
 import { UserContext } from '../userContext';
 import { BASE_URL } from '../backendUrl';
+import { fetchDataFromApi } from '../utils/api';
 
 
 const LoginPage = () => {
@@ -12,12 +13,7 @@ const LoginPage = () => {
 
  async function login(ev){
     ev.preventDefault();
-  const response =  await fetch(BASE_URL+'/login',{
-      method:'POST',
-      body: JSON.stringify({username,password}),
-      headers: {'Content-Type':'application/json'},
-      credentials:'include'
-    })
+  const response =  await fetchDataFromApi('/login','POST',null,json.toString({username,password}));
     console.log(response);
     if(response.ok){
         response.json().then(userInfo=>{
