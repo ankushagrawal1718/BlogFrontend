@@ -11,7 +11,15 @@ const PostPage = () => {
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
   useEffect(() => {
-    fetch(BASE_URL+`/post/${id}`).then((response) => {
+    fetch(BASE_URL+`/post/${id}`, {
+      method: 'GET', 
+      credentials: 'include',  
+      headers: {
+        'Content-Type': 'application/json',
+        
+      },
+    
+    }).then((response) => {
       response.json().then((postInfo) => {
         setPostInfo(postInfo);
       });
