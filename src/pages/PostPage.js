@@ -13,7 +13,7 @@ const PostPage = () => {
   useEffect(() => {
     fetch(BASE_URL+`/post/${id}`, {
       method: 'GET', 
-      credentials: 'include',  
+      // credentials: 'include',  
       headers: {
         'Content-Type': 'application/json',
         
