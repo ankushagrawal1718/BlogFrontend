@@ -38,7 +38,7 @@ const EditPost = () => {
     const response = await fetch('https://blog-rg2y.onrender.com/post',{
             method:'PUT',
             body:data,
-            // credentials:'include',
+            credentials:'include',
         });
         if(response.ok){
             setRedirect(true);
