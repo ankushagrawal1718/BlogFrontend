@@ -7,7 +7,7 @@ import { BASE_URL } from "./backendUrl";
 const Header = () => {
   const {setUserInfo,userInfo} = useContext(UserContext);
   useEffect(() => {
-    fetch(BASE_URL+'/profile', {
+    fetch('/profile', {
       // credentials: 'include',
     })
     .then(response => {
