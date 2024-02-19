@@ -38,7 +38,7 @@ const EditPost = () => {
     const response = await fetch(BASE_URL+'/post',{
             method:'PUT',
             body:data,
-            credentials:'include',
+            // credentials:'include',
         });
         if(response.ok){
             setRedirect(true);
