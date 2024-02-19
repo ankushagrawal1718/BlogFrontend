@@ -13,26 +13,26 @@ const LoginPage = () => {
 
  async function login(ev){
     ev.preventDefault();
-    try {
-      const response =  await fetchDataFromApi('/login','POST',null,json.toString({username,password}));
-        console.log(response);
-      
-    } catch (error) {
-      console.log(error,"something went wrong");
+    const response =  await fetch('/login',{
+      method:'POST',
+      body: JSON.stringify({username,password}),
+      headers: {'Content-Type':'application/json'},
+      credentials:'include'
+    })
+    console.log(response);
+    if(response.ok){
+        response.json().then(userInfo=>{
+          setUserInfo(userInfo);
+          setRedirect(true);
+        })
+    }else{
+      if(response.status=== 404){
+        alert('Invalid User. Please try with valid user information');
+      }
+      else{ 
+        alert('Invalid password. plz check the password')
+      }
     }
-    // if(response.ok){
-    //     response.json().then(userInfo=>{
-    //       setUserInfo(userInfo);
-    //       setRedirect(true);
-    //     })
-    // }else{
-    //   if(response.status=== 404){
-    //     alert('Invalid User. Please try with valid user information');
-    //   }
-    //   else{ 
-    //     alert('Invalid password. plz check the password')
-    //   }
-    // }
   }
     if(redirect){
       return <Navigate to ={'/'}/>
