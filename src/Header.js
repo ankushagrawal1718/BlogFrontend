@@ -8,6 +8,7 @@ const Header = () => {
   const {setUserInfo,userInfo} = useContext(UserContext);
   useEffect(() => {
     fetch(BASE_URL+'/profile', {
+      method:'GET',
       credentials: 'include',
     })
     .then(response => {
