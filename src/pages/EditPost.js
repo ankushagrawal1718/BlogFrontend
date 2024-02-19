@@ -14,7 +14,7 @@ const EditPost = () => {
     const [redirect,setRedirect] = useState(false);
 
     useEffect(()=>{
-        fetch('https://blog-rg2y.onrender.com/post/'+id)
+        fetch(BASE_URL+'/post/'+id)
         .then(response=>{
             response.json().then(postInfo=>{
                 setTitle(postInfo.title);
@@ -35,7 +35,7 @@ const EditPost = () => {
             data.set('file',files?.[0]);
         }
         
-    const response = await fetch('https://blog-rg2y.onrender.com/post',{
+    const response = await fetch( BASE_URL+'/post',{
             method:'PUT',
             body:data,
             credentials:'include',
