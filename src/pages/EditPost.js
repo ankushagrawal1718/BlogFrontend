@@ -14,7 +14,7 @@ const EditPost = () => {
     const [redirect,setRedirect] = useState(false);
 
     useEffect(()=>{
-        fetch(BASE_URL+'/post/'+id)
+        fetch('https://blog-rg2y.onrender.com/post/'+id)
         .then(response=>{
             response.json().then(postInfo=>{
                 setTitle(postInfo.title);
