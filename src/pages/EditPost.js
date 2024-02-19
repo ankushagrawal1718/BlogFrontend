@@ -35,7 +35,7 @@ const EditPost = () => {
             data.set('file',files?.[0]);
         }
         
-    const response = await fetch(BASE_URL+'/post',{
+    const response = await fetch('https://blog-rg2y.onrender.com/post',{
             method:'PUT',
             body:data,
             // credentials:'include',
