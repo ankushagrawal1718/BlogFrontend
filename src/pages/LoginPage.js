@@ -21,7 +21,6 @@ const LoginPage = () => {
     })
     console.log(response);
     if(response.ok){
-        document.cookie = `token=${response.token}; path=/; secure; HttpOnly`;
         response.json().then(userInfo=>{
           setUserInfo(userInfo);
           setRedirect(true);
