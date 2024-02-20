@@ -11,7 +11,7 @@ const LoginPage = () => {
   const [redirect,setRedirect] = useState(false);
   const {setUserInfo} = useContext(UserContext);
 
- async function login(ev){
+  async function login(ev){
     ev.preventDefault();
     const response =  await fetch(BASE_URL+'/login',{
       method:'POST',
@@ -21,6 +21,7 @@ const LoginPage = () => {
     })
     console.log(response);
     if(response.ok){
+        document.cookie = `token=${response.data.token}; path=/; secure; HttpOnly`;
         response.json().then(userInfo=>{
           setUserInfo(userInfo);
           setRedirect(true);
